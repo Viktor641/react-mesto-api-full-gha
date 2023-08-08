@@ -1,0 +1,23 @@
+.profile__paragraph {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFF;
+  margin: 0;
+  margin-top: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+@media screen and (max-width: 768px) {
+  .profile__paragraph {
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 6px;
+    max-width: 282px;
+  }
+}

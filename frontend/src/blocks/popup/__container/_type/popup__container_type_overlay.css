@@ -1,0 +1,12 @@
+.popup__container_type_overlay {
+  background-color: transparent;
+  min-width: 433px;
+  width: auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .popup__container_type_overlay {
+    width: 75%;
+    min-width: auto;
+  }
+}

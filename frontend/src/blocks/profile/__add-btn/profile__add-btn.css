@@ -1,0 +1,23 @@
+.profile__add-btn {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid #FFF;
+  border-radius: 2px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 630px) {
+  .profile__add-btn {
+    width: 60%;
+    margin-top: 36px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__add-btn {
+    width: 100%;
+  }
+}

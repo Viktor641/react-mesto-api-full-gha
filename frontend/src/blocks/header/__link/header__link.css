@@ -1,0 +1,31 @@
+.header__link {
+  height: 22px;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 18px 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+  .header__link {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header__link {
+    height: 17px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header__link {    
+    margin-top: 0px;
+    margin-right: 10px;
+  }
+}

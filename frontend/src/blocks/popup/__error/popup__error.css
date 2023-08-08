@@ -1,0 +1,7 @@
+.popup__error {
+  display: none;
+}
+
+.popup__error:last-of-type {
+  margin-bottom: 0;
+}

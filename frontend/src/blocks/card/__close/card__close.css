@@ -1,0 +1,12 @@
+.card__close {
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+}
+
+.card__close:focus-visible {
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,27 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  margin: 0 auto;
+  max-width: 880px;
+  column-gap: 17px;
+  row-gap: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 51px;
+  margin-bottom: 67px;
+}
+
+@media screen and (max-width: 920px) {
+  .cards {
+    width: calc(100% - 38px);
+    column-gap: 13px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .cards {
+    margin-top: 36px;
+    margin-bottom: 48px;
+  }
+}
