@@ -1,5 +1,12 @@
 const allowedCors = [
   'http://localhost:3001',
+  'https://localhost:3001',
+  'http://localhost:3000',
+  'https://localhost:3000',
+  'http://api.sudarkinvmesto.nomoreparties.co',
+  'https://api.sudarkinvmesto.nomoreparties.co',
+  'http://sudarkinvmesto.nomoreparties.co',
+  'https://sudarkinvmesto.nomoreparties.co',
 ];
 
 const cors = (req, res, next) => {
