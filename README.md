@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.98.152
+IP 51.250.98.152
 
 Frontend https://sudarkinvmesto.nomoreparties.co
 
