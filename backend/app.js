@@ -3,10 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { errors } = require('celebrate');
-const cors = require('./middlewares/cors');
 const helmet = require('helmet');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const rateLimit = require('express-rate-limit');
+const cors = require('./middlewares/cors');
 
 const generalError = require('./middlewares/generalError');
 const routes = require('./routes/index');
@@ -20,11 +18,6 @@ app.use(helmet());
 
 app.use(cors);
 app.use(express.json());
-
-
-// const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100, legacyHeaders: false });
-
-// app.use(limiter);
 
 app.use(requestLogger);
 
