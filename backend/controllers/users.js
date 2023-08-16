@@ -49,16 +49,17 @@ const getUser = (req, res, next) => {
   const { userId } = req.params;
 
   User.findById(userId)
-    .orFail(() => new Error('NotFound'))
+    .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.message === 'NotFound') {
-        throw new NotFoundError('Пользователь по указанному _id не найден.');
+        return next(new NotFoundError('Пользователь по указанному _id не найден.'));
       } else if (err.name === 'CastError') {
-        throw new BedRequestError('Переданы некорректные данные пользователя');
+        return next(new BedRequestError('Переданы некорректные данные пользователя'));
+      } else {
+        next(err);
       }
-    })
-    .catch(next);
+    });
 };
 
 const patchProfile = (req, res, next) => {
@@ -72,18 +73,19 @@ const patchProfile = (req, res, next) => {
       runValidators: true,
     },
   )
-    .orFail(() => new Error('NotFound'))
+    .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => {
       res.status(200).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BedRequestError('Переданы некорректные данные при обновлении профиля.');
+        return next(new BedRequestError('Переданы некорректные данные при обновлении профиля.'));
       } else if (err.message === 'NotFound') {
-        throw new NotFoundError('Пользователь с указанным _id не найден.');
+        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
+      } else {
+        next(err);
       }
-    })
-    .catch(next);
+    });
 };
 
 const patchAvatar = (req, res, next) => {
@@ -97,18 +99,19 @@ const patchAvatar = (req, res, next) => {
       runValidators: true,
     },
   )
-    .orFail(() => new Error('NotFound'))
+    .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => {
       res.status(200).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BedRequestError('Переданы некорректные данные при обновлении аватара.');
+        return next(new BedRequestError('Переданы некорректные данные при обновлении аватара.'));
       } else if (err.message === 'NotFound') {
-        throw new NotFoundError('Пользователь с указанным _id не найден.');
+        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
+      } else {
+        next(err);
       }
-    })
-    .catch(next);
+    });
 };
 
 const login = (req, res, next) => {
@@ -124,16 +127,15 @@ const login = (req, res, next) => {
 
 const getAuthUser = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail(() => new Error('NotFound'))
+    .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res.status(200).send({ user }))
     .catch((err) => {
-      if (err.name === 'CastError') {
-        throw new BedRequestError('Переданы некорректные данные пользователя.');
-      } else if (err.message === 'NotFound') {
-        throw new NotFoundError('Пользователь с указанным _id не найден.');
+      if (err.message === 'NotFound') {
+        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
+      } else {
+        next(err);
       }
-    })
-    .catch(next);
+    });
 };
 
 module.exports = {
