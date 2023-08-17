@@ -52,9 +52,7 @@ const getUser = (req, res, next) => {
     .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res.status(200).send(user))
     .catch((err) => {
-      if (err.message === 'NotFound') {
-        return next(new NotFoundError('Пользователь по указанному _id не найден.'));
-      } else if (err.name === 'CastError') {
+      if (err.name === 'CastError') {
         return next(new BedRequestError('Переданы некорректные данные пользователя'));
       } else {
         next(err);
@@ -80,8 +78,6 @@ const patchProfile = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BedRequestError('Переданы некорректные данные при обновлении профиля.'));
-      } else if (err.message === 'NotFound') {
-        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
       } else {
         next(err);
       }
@@ -106,8 +102,6 @@ const patchAvatar = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new BedRequestError('Переданы некорректные данные при обновлении аватара.'));
-      } else if (err.message === 'NotFound') {
-        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
       } else {
         next(err);
       }
@@ -129,13 +123,7 @@ const getAuthUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(new NotFoundError('Пользователь по указанному _id не найден'))
     .then((user) => res.status(200).send({ user }))
-    .catch((err) => {
-      if (err.message === 'NotFound') {
-        return next(new NotFoundError('Пользователь с указанным _id не найден.'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 module.exports = {
